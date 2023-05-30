@@ -7,12 +7,14 @@ import Categories from './components/Categories'
 import Users from './components/Users'
 import Nav from './components/Nav'
 import Reviews from './components/Reviews'
+import Header from './components/Header'
 
 function App() {
 
   return (
     <BrowserRouter>
       <>
+      <Header/>
      <Nav/>
      <Routes>
         <Route path="/" element ={<Home/>}/>
