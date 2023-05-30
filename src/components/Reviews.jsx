@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import {Link} from 'react-router-dom'
 
 function Reviews () {
 
@@ -24,6 +25,9 @@ function Reviews () {
                   <section className="borderElem">
                     <h2>Name: {review.owner}</h2><br />
                     <h2 >{review.title}</h2>
+                    <Link to='/reviewcard'>
+                         {review.review_id} Read more </Link>
+
                     <br />
                     </section>
                     )
