@@ -3,6 +3,8 @@ import { useState, useEffect } from "react"
 function Reviews () {
 
     const [reviews2, setReviews] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         fetch("https://db-reviews.onrender.com/api/reviews")
@@ -10,14 +12,17 @@ function Reviews () {
             return result.json()
             })
             .then(({ reviews })  => {
-                console.log(reviews)
                 setReviews(reviews)
-               
+                setIsLoading(false);
+
         })
     }, [])
 
     return (
         <>
+         {isLoading ? (
+        <p>Loading...</p>
+      ) : (
           <div className="reviewsContainer">
               {reviews2.map(review => {
                 return (
@@ -29,7 +34,7 @@ function Reviews () {
                     )
               })}
           </div >
-          
+      )}
           </>
       )
 }
