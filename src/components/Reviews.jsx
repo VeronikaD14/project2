@@ -25,9 +25,9 @@ function Reviews () {
                   <section className="borderElem">
                     <h2>Name: {review.owner}</h2><br />
                     <h2 >{review.title}</h2>
-                    <Link to='/reviewcard'>
+                    <Link to={`/reviewcard/${review.review_id}`}>
                          {review.review_id} Read more </Link>
-
+                         
                     <br />
                     </section>
                     )

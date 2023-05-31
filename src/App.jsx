@@ -22,7 +22,7 @@ function App() {
         <Route path="/categories" element ={<Categories/>}/>
         <Route path="/reviews" element ={<Reviews/>}/>
         <Route path="/users" element ={<Users/>}/>
-        <Route path="/reviewcard" element ={<ReviewCard/>}/>
+        <Route path="/reviewcard/:id" element ={<ReviewCard/>}/>
 
 
      </Routes>
