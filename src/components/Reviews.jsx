@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { fetchReviews } from "./utils";
+
 import {Link} from 'react-router-dom'
+
 
 function Reviews () {
 
@@ -32,6 +34,9 @@ function Reviews () {
 
     return (
         <>
+         {isLoading ? (
+        <p>Loading...</p>
+      ) : (
           <div className="reviewsContainer">
               {reviews2.map(review => {
                 return (
@@ -46,7 +51,7 @@ function Reviews () {
                     )
               })}
           </div >
-          
+      )}
           </>
       )
 }
