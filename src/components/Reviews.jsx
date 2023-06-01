@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react"
+import { fetchReviews } from "./utils";
 import {Link} from 'react-router-dom'
-import { fetchReviews } from "./utils"
 
 function Reviews () {
 
     const [reviews2, setReviews] = useState([])
+    const [isLoading, setIsLoading] = useState(true);
+
 
     useEffect(() => {
         fetchReviews()
@@ -14,6 +16,19 @@ function Reviews () {
 
              })
                 }, [])
+
+
+      useEffect(() => {
+        fetch("https://db-reviews.onrender.com/api/reviews")
+            .then(result => {
+            return result.json()
+            })
+            .then(({ reviews })  => {
+                setReviews(reviews)
+                setIsLoading(false);
+    
+        })
+    }, [])
 
     return (
         <>
@@ -37,3 +52,4 @@ function Reviews () {
 }
 
 export default Reviews
+
