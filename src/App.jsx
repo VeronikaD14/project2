@@ -8,6 +8,7 @@ import Users from './components/Users'
 import Nav from './components/Nav'
 import Reviews from './components/Reviews'
 import Header from './components/Header'
+import ReviewCard from './components/RevievCard'
 
 function App() {
 
@@ -21,6 +22,8 @@ function App() {
         <Route path="/categories" element ={<Categories/>}/>
         <Route path="/reviews" element ={<Reviews/>}/>
         <Route path="/users" element ={<Users/>}/>
+        <Route path="/reviewcard/:id" element ={<ReviewCard/>}/>
+
 
      </Routes>
 
