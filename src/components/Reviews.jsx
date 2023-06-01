@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { fetchReviews } from "./utils";
 
 function Reviews () {
 
@@ -7,6 +8,16 @@ function Reviews () {
 
 
     useEffect(() => {
+        fetchReviews()
+        .then(({ reviews })  => {
+            setReviews(reviews)
+            setIsLoading(false);
+
+             })
+                }, [])
+
+
+      useEffect(() => {
         fetch("https://db-reviews.onrender.com/api/reviews")
             .then(result => {
             return result.json()
@@ -14,7 +25,7 @@ function Reviews () {
             .then(({ reviews })  => {
                 setReviews(reviews)
                 setIsLoading(false);
-
+    
         })
     }, [])
 
