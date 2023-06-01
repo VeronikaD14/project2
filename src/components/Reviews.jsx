@@ -1,21 +1,19 @@
 import { useState, useEffect } from "react"
 import {Link} from 'react-router-dom'
+import { fetchReviews } from "./utils"
 
 function Reviews () {
 
     const [reviews2, setReviews] = useState([])
 
     useEffect(() => {
-        fetch("https://db-reviews.onrender.com/api/reviews")
-            .then(result => {
-            return result.json()
-            })
-            .then(({ reviews })  => {
-                console.log(reviews)
-                setReviews(reviews)
-               
-        })
-    }, [])
+        fetchReviews()
+        .then(({ reviews })  => {
+            setReviews(reviews)
+            setIsLoading(false);
+
+             })
+                }, [])
 
     return (
         <>
