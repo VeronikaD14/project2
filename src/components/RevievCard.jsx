@@ -9,6 +9,7 @@ const {id} = useParams()
 const [revCard, setRevCard] = useState(null)
 const [isLoading, setIsLoading] = useState(true);
 
+
 useEffect(() => {
     fetchRevId(id)
         .then(({ review })  => {
