@@ -76,7 +76,7 @@ return (
     <br></br>
     <button className="show-com-button" onClick={handleShowComments}  >showComments</button>
     <section>
-    {showComments ? <Comments comments={comments} /> : null}
+    {showComments ? <Comments comments={comments} id={id} /> : null}
 
     </section>
 
