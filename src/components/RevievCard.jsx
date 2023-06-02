@@ -40,11 +40,10 @@ useEffect(() => {
     })
 }, [id])
 
-const voteInc = (id) => {
+const voteInc = () => {
     setButtonDisabled(true);
-  
     try {
-      patchVotes(id);
+      patchVotes(revCard.review_id);
       setVote((prevVote) => prevVote + 1);
     } catch (error) {
       console.log('Error:', error);

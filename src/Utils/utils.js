@@ -33,9 +33,9 @@ export function fetchComments(id) {
 }
 
 export function patchVotes(id) {
-    fetch(`https://db-reviews.onrender.com/api/reviews/${id}`, {
+    fetch(`https://db-reviews.onrender.com/api/reviews/${String(id)}`, {
         method: 'PATCH',
-        body: JSON.stringify({ inc_votes : 1 }),
+        body: JSON.stringify({ "inc_votes" : 1 }),
         headers: {
           'Content-Type': 'application/json',
         },
