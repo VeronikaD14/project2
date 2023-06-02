@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { fetchReviews } from "./utils";
+import { fetchReviews } from "../Utils/utils";
 
 import {Link} from 'react-router-dom'
 

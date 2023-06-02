@@ -20,3 +20,14 @@ export function fetchReviews() {
         throw error;
     });
 }
+
+export function fetchComments(id) {
+    return fetch(`https://db-reviews.onrender.com/api/reviews/${id}/comments`)
+    .then(result => {
+        return result.json()
+        })
+    .catch(error => {
+        console.error("Error fetching reviews:", error);
+        throw error;
+    });
+}
