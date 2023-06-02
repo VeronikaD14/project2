@@ -11,6 +11,7 @@ const [revCard, setRevCard] = useState(null)
 const [isLoading, setIsLoading] = useState(true);
 const [comments, setComments] = useState([]);
 const [showComments, setShowComments] = useState(false);
+const [vote, setVote] = useState(null);
 
 const handleShowComments = () => {
     setShowComments((prevShowComments) => !prevShowComments);
@@ -21,6 +22,10 @@ useEffect(() => {
         .then(({ review })  => {
             setRevCard(review[0])
             setIsLoading(false);
+
+            setVote(review[0].votes);
+
+            
            
     })
 }, [id])
@@ -32,6 +37,17 @@ useEffect(() => {
 
     })
 }, [id])
+
+const voteInc = () => {
+    fetch(`https://db-reviews.onrender.com/api/reviews/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ inc_votes : 1 }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    setVote(prevVote => parseInt(prevVote, 10) + 1)
+}
 
 return (
     <section className="borderElem">
@@ -46,6 +62,7 @@ return (
     <h2>Owner : {revCard.owner}</h2>
      <h2>Id : {revCard.review_id}</h2>
     <h2>Category : {revCard.category}</h2>
+    <button className="vote-button" onClick={voteInc}>Votes : {vote}</button>
 
     <img src={revCard.review_img_url} alt="Review Image" />
     <br></br>
