@@ -18,6 +18,12 @@ body {
   min-height: 100vh;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
 .borderElem {
   border: solid;
   border-color: #535bf2;
