@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { fetchComments, fetchRevId } from "../Utils/utils";
+import { fetchComments, fetchRevId, patchVotes } from "../Utils/utils";
 import Comments from "./Comments"
 
 
@@ -12,6 +12,8 @@ const [isLoading, setIsLoading] = useState(true);
 const [comments, setComments] = useState([]);
 const [showComments, setShowComments] = useState(false);
 const [vote, setVote] = useState(null);
+const [buttonDisabled, setButtonDisabled] = useState(false);
+
 
 const handleShowComments = () => {
     setShowComments((prevShowComments) => !prevShowComments);
@@ -38,16 +40,18 @@ useEffect(() => {
     })
 }, [id])
 
-const voteInc = () => {
-    fetch(`https://db-reviews.onrender.com/api/reviews/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({ inc_votes : 1 }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    setVote(prevVote => parseInt(prevVote, 10) + 1)
-}
+const voteInc = (id) => {
+    setButtonDisabled(true);
+  
+    try {
+      patchVotes(id);
+      setVote((prevVote) => prevVote + 1);
+    } catch (error) {
+      console.log('Error:', error);
+      setVote((prevVote) => prevVote - 1);
+    }
+  };
+  
 
 return (
     <section className="borderElem">
@@ -62,11 +66,16 @@ return (
     <h2>Owner : {revCard.owner}</h2>
      <h2>Id : {revCard.review_id}</h2>
     <h2>Category : {revCard.category}</h2>
-    <button className="vote-button" onClick={voteInc}>Votes : {vote}</button>
+    <button className="vote-button" onClick={voteInc} disabled={buttonDisabled} >Like 👍 : {vote}</button>
+
+    <p>Votes: {vote}</p>
+
+    
+
 
     <img src={revCard.review_img_url} alt="Review Image" />
     <br></br>
-    <button className="show-com-button" onClick={handleShowComments}>showComments</button>
+    <button className="show-com-button" onClick={handleShowComments}  >showComments</button>
     <section>
     {showComments ? <Comments comments={comments} /> : null}
 

@@ -31,3 +31,13 @@ export function fetchComments(id) {
         throw error;
     });
 }
+
+export function patchVotes(id) {
+    fetch(`https://db-reviews.onrender.com/api/reviews/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ inc_votes : 1 }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    }
